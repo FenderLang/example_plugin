@@ -1,0 +1,15 @@
+[package]
+name = "example_plugin"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["dylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fender = { git = "https://github.com/FenderLang/Fender", rev = "0e28c1f8382fe6822153787dd32e690a2776c0b3", default-features = false }
+freight_vm = { git = "https://github.com/FenderLang/Freight", rev = "2390fa079bf679a2f8de12b479b3976644d04ea3", features = [
+   "variadic_functions",
+] }

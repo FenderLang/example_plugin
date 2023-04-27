@@ -1,11 +1,13 @@
+use fender::freight_vm;
+
 use fender::{
     declare_plugin,
     fender_value::FenderValue,
     fndr_native_func,
     plugin::{FenderPluginFunction, Plugin},
-    type_sys::type_system::FenderTypeSystem,
+    type_sys::freight_type_system::FenderTypeSystem,
 };
-use freight_vm::{expression::NativeFunction, function::ArgCount};
+use fender::freight_vm::{expression::NativeFunction, function::ArgCount};
 use std::collections::HashMap;
 
 #[derive(Debug)]
@@ -65,17 +67,19 @@ impl Plugin for ExamplePlugin {
     }
 }
 
-fndr_native_func!(
-    /// example1
-    #[no_mangle]
-    example_1_func, // `example_1_func` is the rust function name, not the name of the function that will be used in fender
-    |_, item, argv| {
-        println!("item: {}", item.fender_dbg_string());
-        println!("argv: {}", argv.fender_dbg_string());
-        use fender::fender_value::FenderValue::*;
-        Ok(FenderValue::make_list(vec![item, Int(argv.len().unwrap() as i64).into()]).into())
-    }
-);
+#[doc = " example1"]
+#[allow(unused)]
+pub fn example_1_func(_: &mut freight_vm::execution_engine::ExecutionEngine<fender::type_sys::freight_type_system::FenderTypeSystem>,args:freight_vm::execution_engine::Stack<fender::type_sys::fender_reference::FenderReference>,) -> Result<fender::type_sys::fender_reference::FenderReference,freight_vm::error::FreightError>{
+  const _ARG_COUNT:usize = fender::count!(item,argv);
+  let[item,argv]:[fender::type_sys::fender_reference::FenderReference;
+  _ARG_COUNT] = args.try_into().unwrap();
+  {
+    println!("item: {}",item.fender_dbg_string());
+    println!("argv: {}",argv.fender_dbg_string());
+    use fender::fender_value::FenderValue::*;
+    Ok(FenderValue::make_list(vec![item,Int(argv.len().unwrap()as i64).into()]).into())
+  }
+}
 
 fndr_native_func!(
     /// example2
@@ -93,11 +97,11 @@ fndr_native_func!(
 #[doc = " example2"]
 #[allow(unused)]
 pub fn thing(
-    _: &mut freight_vm::execution_engine::ExecutionEngine<
-        fender::type_sys::type_system::FenderTypeSystem,
+    _: &mut fender::freight_vm::execution_engine::ExecutionEngine<
+        fender::type_sys::freight_type_system::FenderTypeSystem,
     >,
-    args: Vec<fender::fender_reference::FenderReference>,
-) -> Result<fender::fender_reference::FenderReference, freight_vm::error::FreightError> {
+    args: Vec<fender::type_sys::fender_reference::FenderReference>,
+) -> Result<fender::type_sys::fender_reference::FenderReference, fender::freight_vm::error::FreightError> {
     const _ARG_COUNT: usize = fender::count!();
     {
         Ok(FenderValue::make_string("test".into()).into())

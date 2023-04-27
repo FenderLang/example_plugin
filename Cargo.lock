@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "bumpalo"
-version = "3.12.0"
+version = "3.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d261e256854913907f67ed06efbc3338dfe6179796deefc1ff763fc1aee5535"
+checksum = "9b1ce199063694f33ffb7dd4e0ee620741495c32833cde5aa08f02a0bf96f0c8"
 
 [[package]]
 name = "cfg-if"
@@ -19,13 +19,12 @@ name = "example_plugin"
 version = "0.1.0"
 dependencies = [
  "fender",
- "freight_vm",
 ]
 
 [[package]]
 name = "fender"
 version = "0.1.0"
-source = "git+https://github.com/FenderLang/Fender?rev=0e28c1f8382fe6822153787dd32e690a2776c0b3#0e28c1f8382fe6822153787dd32e690a2776c0b3"
+source = "git+https://github.com/FenderLang/Fender?rev=c268abae87f48c229de23b991d594e33e6d98b85#c268abae87f48c229de23b991d594e33e6d98b85"
 dependencies = [
  "flux_bnf",
  "freight_vm",
@@ -44,7 +43,7 @@ dependencies = [
 [[package]]
 name = "freight_vm"
 version = "0.1.0"
-source = "git+https://github.com/FenderLang/Freight?rev=2390fa079bf679a2f8de12b479b3976644d04ea3#2390fa079bf679a2f8de12b479b3976644d04ea3"
+source = "git+https://github.com/FenderLang/Freight?rev=a06053e83b736f08621a7eb66840577edaefc021#a06053e83b736f08621a7eb66840577edaefc021"
 
 [[package]]
 name = "getrandom"
@@ -59,9 +58,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.141"
+version = "0.2.142"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3304a64d199bb964be99741b7a14d26972741915b3649639149b2479bb46f4b5"
+checksum = "6a987beff54b60ffa6d51982e1aa1146bc42f19bd26be28b0586f252fccf5317"
 
 [[package]]
 name = "libloading"
